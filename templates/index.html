@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Earthquake Data Query</title>
+  </head>
+  <body>
+    <h1>Harideep Thalla Student Id:1001947439</h1>
+    <h2>Earthquake Data Query</h2>
+    <form method="POST" action="/random_queries">
+      <label for="num_queries">Number of random queries (up to 1000):</label>
+      <input type="number" name="num_queries" id="num_queries" min="1" max="1000" required><br><br>
+      <label for="location">Location (e.g. CA or lat,long):</label>
+      <input type="text" name="location" id="location"><br><br>
+      <label for="time_range">Time range (e.g. 2022-01-01 to 2022-01-31):</label>
+      <input type="text" name="time_range" id="time_range"><br><br>
+      <label for="magnitude_range">Magnitude range (e.g. 5 to 6):</label>
+      <input type="text" name="magnitude_range" id="magnitude_range"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    {% if results %}
+      <h2>Results:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Location</th>
+            <th>Date and Time</th>
+            <th>Magnitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+            <tr>
+              <td>{{ result.id }}</td>
+              <td>{{ result.location }}</td>
+              <td>{{ result.date_time }}</td>
+              <td>{{ result.magnitude }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </body>
+</html>
